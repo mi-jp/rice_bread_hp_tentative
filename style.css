@@ -479,6 +479,23 @@ body {
     margin: 50px auto;
   }
 
+
+   /* 01,02ナンバー画像のサイズ設定 */
+  .about-item .number img {
+    width: 70px;  /* サイズ調整 */
+    height: auto; /* 高さは自動で調整 */
+  }
+
+
+  .about-item.about-01 
+  .text-block .text,
+  .about-item.about-02 
+  .text-block .text {
+    text-align: left !important;
+  }
+
+
+
   .about-item .text-block {
     text-align: center;
   }
