@@ -247,25 +247,45 @@ body {
   top: -40px;
 }
 
-.about-item .text-bottom-img[src*="leaf02.png"] {
-  left: 400px;
-  top: -80px;
+
+
+
+.about-item.about-02 .text-block .text-bottom-img[src*="leaf02.png"] {
+    position: absolute;
+    left: auto;       /* 左は無視 */
+    right: -50px;    /* 数値を調整して右にずらす */
+    top: 400px;       /* 元の縦位置 */
+    z-index: 10;
 }
 
+/* PC版：leaf01画像を左に寄せる */
+.about-item.about-01 .text-block .text-bottom-img[src*="leaf01.png"] {
+    position: absolute;   /* 必須 */
+    left: -100px;         /* 左に寄せたい量を調整 */
+    top: 350px;           /* 現在の縦位置 */
+    right: auto;          /* 右は無効化 */
+    z-index: 10;          /* 他の要素より前面 */
+}
+
+/* PC版のみ：pan-seiho画像を下げる */
+.about-item.about-02 .img img[src*="pan-seiho.png"] {
+  margin-top: 120px; /* 下げたい量に調整 */
+}
 
 
 
 /* お知らせ  */
 .section.news {
   position: relative;
-  margin-top: -880px;
+  margin-top: -1000px !important;  /* 上に上げたい量に調整 */
+    z-index: 6 !important;
   padding: 100px 0;
-  z-index: 1;
+ 
   background: transparent;
 }
 
 .news-box {
-  max-width: 1200px;
+  max-width: 1800px;
   margin: 0 auto;
   text-align: center;
 }
@@ -398,66 +418,11 @@ body {
   display: block;
 }
 
-/*  レスポンシブ */
-@media screen and (min-width: 769px) {
 
-  .section.access .info {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-top: 0;
-  }
 
-  .section.access .info p {
-    display: flex;
-    justify-content: flex-start;
-    width: 400px;
-    margin-bottom: 10px;
-    text-align: left;
-  }
 
-  .section.access .label {
-    width: 100px;
-    font-weight: bold;
-    flex-shrink: 0;
-    text-align: left;
-  }
 
-  .section.access .value {
-    flex: 1;
-    text-align: left;
-  }
 
-  .about-item .text-bottom-img[src*="leaf01.png"] {
-    position: relative;
-    left: -50px;
-    top: -40px;
-  }
-
-  .about-item .text-bottom-img[src*="leaf02.png"] {
-    position: relative;
-    left: 450px;
-    top: -80px;
-  }
-
-  .section.news {
-    margin-top: -1000px; /* 上に上げたい量に応じて調整 */
-  }
-
-  .news-item {
-    max-width: 600px;   /* 好きな横幅に調整 */
-    margin-left: auto;  /* 左右中央寄せ */
-    margin-right: auto;
-  }
-
-}
-
-@media screen and (max-width: 1200px) {
-  .about-item.about-02 .img,
-  .about-item.about-02 .text-block {
-    margin-top: 50px;
-  }
-}
 
 @media screen and (max-width: 768px) {
 
@@ -479,31 +444,137 @@ body {
     margin: 50px auto;
   }
 
-
-   /* 01,02ナンバー画像のサイズ設定 */
+  /* 01,02ナンバー画像のサイズ設定 */
   .about-item .number img {
-    width: 70px;  /* サイズ調整 */
-    height: auto; /* 高さは自動で調整 */
+    width: 70px;  
+    height: auto;
   }
 
-
-  .about-item.about-01 
-  .text-block .text,
-  .about-item.about-02 
-  .text-block .text {
+  /* テキストの左右余白設定 */
+  .about-item .text-block .text {
     text-align: left !important;
+    padding-left: 35px;
+    padding-right: 35px;
+    box-sizing: border-box;
+  }
+
+  /* 02ブロック全体 */
+  .about-item.about-02 {
+    flex-direction: column !important;
+    align-items: center !important;
+    text-align: center !important;
+    transform: none !important;       /* PCの translateY を無効化 */
+    margin-top: 60px !important;      
+  }
+
+  /* 02ブロック内テキスト */
+  .about-item.about-02 .text-block {
+    text-align: center !important;
+    top: 0 !important;
+    margin-top: 20px;
+  }
+
+  .about-item.about-02 .text-block .text {
+    position: relative;
+    top: 50px; /* テキスト微調整 */
+  }
+
+  /* 02ブロック画像 */
+  .about-item.about-02 .img {
+    width: 80%;
+    margin: 20px auto 0 auto !important;
+  }
+
+  /* ナンバー画像・テキスト番号調整 */
+  .about-item.about-02 .number-img,
+  .about-item.about-02 .text-block .number img {
+    position: static !important;
+    transform: none !important;
+    left: auto !important;
+    margin: 0 auto !important;
+    display: block !important;
+  }
+
+  /* 01ブロック調整はそのまま */
+  .about-item.about-01 .number img {
+    position: relative !important;
+    top: -30px !important;
+  }
+
+  .about-item.about-01 .text-block {
+    top: 60px !important;
+  }
+
+
+   /* kome画像サイズ */
+.about-item.about-01 .img img[src*="kome.png"] {
+  width: 80%;      /* pan-seiho画像と同じ幅 */
+  max-width: 500px; 
+  height: auto;
+  margin: 30px auto 0 auto !important; 
+  display: block;
+  margin: -10px auto 0 auto !important;  /* 上の余白を小さくして上に移動 */
+}
+
+
+
+.about-item.about-02 .img img[src*="pan-seiho.png"] {
+    margin-top: 40px !important; /* 下から40pxに変更して上に上げる */
+}
+
+
+
+
+
+
+.about-item.about-01 .text-block .text-bottom-img[src*="leaf01.png"] {
+    position: absolute !important;
+    left: -50px !important;   /* 左にはみ出す量を調整 */
+    top: 20px !important;     /* 縦位置調整 */
+    z-index: 10 !important;   /* 他の要素より前面に */
+    top: 300px !important;     /* 縦位置を下に調整 */
+  }
+
+
+  .about-item.about-02 .text-block .text-bottom-img[src*="leaf02.png"] {
+    position: absolute !important;
+    right: 1px !important;  /* 右にはみ出す量を調整 */
+    top: 60px !important;     /* 縦位置はそのまま */
+    z-index: 10 !important;   /* 他の要素より前面 */
   }
 
 
 
+
+
+
+
+/* 02ブロックのスマホ用位置調整 */
+.about-item.about-02 {
+  margin-top: 100px !important;   /* ブロック全体を下に下げる */
+}
+
+.about-item.about-02 .text-block .text {
+  top: 60px !important;           /* テキストをさらに下に */
+}
+
+.about-item.about-02 .number-img {
+  margin-top: 40px !important;    /* ナンバー画像を下に */
+}
+
+.about-item.about-02 .text-block .text-bottom-img[src*="leaf02.png"] {
+  top: 60px !important;           /* leaf画像を下に */
+}
+
+
+
+
+
+
+
+  /* 共通調整 */
   .about-item .text-block {
     text-align: center;
-  }
-
-  .about-item .img {
-    width: 80%;
-    margin: 0 auto !important;
-    margin-top: 0 !important;
   }
 
   .section.news,
@@ -514,7 +585,8 @@ body {
   }
 
   .section.news {
-    margin-top: -220px;
+    z-index: 6;
+     margin-top: -500px !important; /* 数値を大きくするとさらに下に下げられる */
   }
 
   .about-item.about-01,
@@ -544,10 +616,6 @@ body {
     z-index: 5 !important;
   }
 
-  .section.news {
-    z-index: 6;
-  }
-
   .about-header {
     margin-top: 20px !important;
     transform: translateY(-10px) !important;
@@ -562,45 +630,54 @@ body {
     margin-bottom: 30px !important;
   }
 
-  .about-item.about-01 .number img {
-    position: relative !important;
-    top: -30px !important;
+}
+
+
+
+@media screen and (min-width: 769px) {
+  .news-item {
+    max-width: 600px;  /* 好きな横幅に調整 */
+    margin: 20px auto; /* 中央に寄せる */
   }
 
-  .about-item.about-01 .text-block {
-    top: 60px !important;
+
+
+ /* info全体を中央寄せ */
+  .access .info {
+    width: 420px;        /* お好みの横幅 */
+    margin: 0 auto;      /* セクション中央寄せ */
+    text-align: left;    /* 左揃え */
+    display: flex;
+    flex-direction: column; /* 項目は縦並び */
+    gap: 10px;           /* 項目間の余白 */
   }
 
-  .about-item.about-02 {
-    flex-direction: column !important;
-    align-items: center !important;
-    text-align: center !important;
-    transform: none !important;
-    margin-top: 60px !important;
+  /* 各項目を横並びにする */
+  .access .info p {
+    display: flex;          /* ラベルと値を横並び */
+    align-items: center;    /* 縦中央揃え */
+    gap: 10px;              /* ラベルと値の間隔 */
+    margin: 0;
   }
 
-  .about-item.about-02 .number-img,
-  .about-item.about-02 .text-block .number img {
-    position: static !important;
-    transform: none !important;
-    left: auto !important;
-    margin: 0 auto !important;
-    display: block !important;
+  /* ラベル */
+  .access .info .label {
+    width: 110px;           /* 固定幅 */
+    font-weight: bold;
+    text-align: left;
   }
 
-  .about-item.about-02 .text-block {
-    text-align: center !important;
-    top: 0 !important;
-    margin-top: 20px;
+  /* 値 */
+  .access .info .value {
+    text-align: left;       /* 左揃え */
+    flex: 1;                /* 残り幅を使用 */
   }
 
-  .about-item.about-02 .img {
-    margin: 20px auto 0 auto !important;
-  }
-
-  .about-item.about-02 .text-block .text {
-    position: relative;
-    top: 30px;
+  /* ADDRESS の改行禁止 */
+  .access .info .value.address {
+    white-space: nowrap !important;
+    overflow: hidden;       /* はみ出す場合は非表示 */
+    text-overflow: ellipsis;
   }
 
 }
